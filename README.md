@@ -21,7 +21,7 @@ optional arguments:
 modes:  
   -rs, --reversestring  Performs a basic string reversal. Use with -if and -of to reverse an entire text file.  
   -cc, --caesarcipher   Performs a basic Caesar cipher. Returns all lower case letters. Requires: -k/--key <key> and -m/--message <message>. Use with -if and -of to do an entire file.  
-  -bf, --bruteforce     Use to bruteforce a cipher_text created with a Caesar cipher if the key is not known.
+  -bf, --bruteforce     Use to bruteforce a cipher_text created with a Caesar cipher if the key is not known.  
   -tc, --transpositioncipher
                         Use for a Transposition cipher. Requires -m <message> -k <key>, use with -if and -of to do an entire file  
 
