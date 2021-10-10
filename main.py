@@ -6,21 +6,63 @@ import argparse as a
 
 
 def arg_parse():
-    description = "blah"
-    parser = a.ArgumentParser()
+    description = "Different cipher stuff from the book Cracking Codes with Python"
+    parser = a.ArgumentParser(description=description)
 
     modes = parser.add_argument_group("modes")
-
-    modes.add_argument("-rs", "--reversestring", action="store_true", help="blah")
-    modes.add_argument("-cc", "--caesarcipher", action="store_true", help="blah")
-    modes.add_argument("-bf", "--bruteforce", action="store_true", help="blah")
-    modes.add_argument("-tc", "--transpositioncipher", action="store_true", help="blah")
-    parser.add_argument("-k", "--key", action="store", help="blah")
-    parser.add_argument("-m", "--message", action="store", help="blah")
-    parser.add_argument("-d", "--decrypt", action="store_true", help="blah")
-    parser.add_argument("-e", "--encrypt", action="store_true", help="blah")
-    parser.add_argument("-if", "--inputfile", action="store", help="blah")
-    parser.add_argument("-of", "--outfile", action="store", help="blah")
+    inputs = parser.add_argument_group("inputs")
+    required = parser.add_argument_group("required")
+    modes.add_argument(
+        "-rs", "--reversestring",
+        action="store_true",
+        help="Performs a basic string reversal. Use with -if and -of to reverse an entire text file."
+    )
+    modes.add_argument(
+        "-cc",
+        "--caesarcipher",
+        action="store_true",
+        help="Performs a basic Caesar cipher. Returns all lower case letters. "
+             "Requires: -k/--key <key> and -m/--message <message>. Use with -if and -of to do an entire file.")
+    modes.add_argument(
+        "-bf",
+        "--bruteforce",
+        action="store_true",
+        help="Use to bruteforce a cipher_text created with a Caesar cipher if the key is not known.")
+    modes.add_argument(
+        "-tc",
+        "--transpositioncipher",
+        action="store_true",
+        help="Use for a Transposition cipher. Requires -m <message> -k <key>, use with -if and -of to do an entire file")
+    required.add_argument(
+        "-k",
+        "--key",
+        action="store",
+        help="The key for a Caesar or Transposition Cipher. Required to be of type int")
+    inputs.add_argument(
+        "-m",
+        "--message",
+        action="store",
+        help="Message to decrypt/encrypt. ")
+    required.add_argument(
+        "-d",
+        "--decrypt",
+        action="store_true",
+        help="Set mode to decrypt.")
+    required.add_argument(
+        "-e",
+        "--encrypt",
+        action="store_true",
+        help="Set mode to encrypt")
+    inputs.add_argument(
+        "-if",
+        "--inputfile",
+        action="store",
+        help="Full path to file to decrypt/encrypt")
+    inputs.add_argument(
+        "-of",
+        "--outfile",
+        action="store",
+        help="Full path to file for result of decrypting/encrypting -if.")
 
     args = parser.parse_args()
     return args
